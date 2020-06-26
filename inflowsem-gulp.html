@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>INFLOWSEM Database.md</title>
+
+  <link rel="stylesheet" href="./styles/main.css">
+
+  <!-- <link rel="stylesheet" href="./styles/github-markdown.css"> -->
+  <link rel="stylesheet" href="./styles/atom-one-light.css">
+  <script src="./highlight-js/highlight.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+
+</head>
+
+<body id="preview">
+  <div class="sidebar">
+    <div class="docs-logo">INFLOWSEM Docs</div>
+    <ul class="nav">
+      <li class="nav-item"><a href="database.html">Database</a></li>
+      <li class="nav-item"><a href="gulp.html">Gulp</a></li>
+      <li class="nav-item active"><a href="inflowsem-gulp.html">INFLOWSEM + Gulp</a></li>
+      <li class="nav-item"><a href="creating-pages.html">Creating Pages</a></li>
+      <li class="nav-item"><a href="adding-news-articles.html">Adding News Articles</a></li>
+      <li class="nav-item"><a href="industries-pdf.html">Industries PDFs</a></li>
+      <li class="nav-item"><a href="google-analytics-widget.html">Google Analytics Widget</a></li>
+      <li class="nav-item"><a href="misc.html">Miscellaneous</a></li>
+    </ul>
+  </div>
+  <div class="content">
+    <h1 class="code-line" data-line-start=0 data-line-end=1><a id="INFLOWSEM__gulpjs_0"></a>INFLOWSEM + Gulp</h1>
+    <p class="has-line-data" data-line-start="2" data-line-end="3">The site utilises gulp.js and and cannot be properly worked on without some knowledge of how it works. To get a basic understanding of how gulp is used in the development of
+      web applications, see <a href="gulp.html">gulp</a> - an earlier section within these docs.</p>
+    <h2 class="code-line" data-line-start=4 data-line-end=5><a id="Set_up_4"></a>Set up</h2>
+    <p class="has-line-data" data-line-start="6" data-line-end="7">The directory for the site is as follows:</p>
+    <pre><code class="has-line-data" data-line-start="9" data-line-end="17">inflowsem/
+    ├── node_modules/
+    ├── dist/
+    ├── src/
+    ├── gulpfile.js
+    ├── package.json
+    └── webpack.config.js</code></pre>
+    <h3 class="code-line" data-line-start=17 data-line-end=18><a id="node_modules_17"></a>node_modules/:</h3>
+    <p class="has-line-data" data-line-start="19" data-line-end="20">The node modules folder contains all the site’s dependencies, installed through npm. You don’t need to create this folder - it automatically generates when you install
+      your first plugin. To use plugins in your code, simply <code>require('pluginName')</code> the plugin. Note that you don’t have to reference the node_modules folder, i.e. something like <code>./node_modules/--/--</code>, you just put
+      the name of the plugin itself.</p>
+    <h3 class="code-line" data-line-start=21 data-line-end=22><a id="dist_21"></a>dist/:</h3>
+    <p class="has-line-data" data-line-start="23" data-line-end="24">Short for ‘distributable’, this is the version of the site that is used in production. It is created from the src folder, after all the different tasks, defined in
+      <code>gulpfile.js</code>, have been executed. Note that if you click on any of the html files within the dist folder, it will show you exactly what the page is supposed to look like. This isn’t the same for the files within the src
+      folder.</p>
+    <h3 class="code-line" data-line-start=25 data-line-end=26><a id="src_25"></a>src/:</h3>
+    <p class="has-line-data" data-line-start="27" data-line-end="28">The source folder contains all the raw code for the site, and is the version that is used when you want to edit it. If you open one of the html files within this folder,
+      it unfamiliar and incomplete. This is because none of the tasks defined in <code>gulpfile.js</code> have been executed yet, i.e. the <code>gulp-file-include</code> plugin hasn’t had a chance to run so there’s a lot of missing html,
+      like the navigation bar and footer.</p>
+    <h3 class="code-line" data-line-start=29 data-line-end=30><a id="gulpfilejs_29"></a>gulpfile.js</h3>
+    <p class="has-line-data" data-line-start="31" data-line-end="32">The gulpfile for INFLOWSEM is straight forward and similar to others that you might have come across. The plugins are listed at the top, followed by numerous task
+      functions - these are then exported as a series of tasks so that the <code>gulp default</code> command will run them one after another.</p>
+    <p class="has-line-data" data-line-start="33" data-line-end="34">You will notice that a lot of the tasks simply move one folder from <code>src</code> to <code>dist</code>, like the following code which moves all the files in
+      <code>./src/videos</code> to <code>./dist/videos</code>:</p>
+    <pre><code class="has-line-data" data-line-start="35" data-line-end="41" class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">videos</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">return</span> gulp
+        .src(<span class="hljs-string">'./src/videos/**/*'</span>)
+        .pipe(gulp.dest(<span class="hljs-string">'./dist/videos'</span>))
+    }</code></pre>
+    <p class="has-line-data" data-line-start="41" data-line-end="42">This is a minor problem with this approach; it could be solved by using an assets folder to store all the videos, pdfs, images, tools etc. The important thing to note is
+      that if you create a new folder within the src folder, and you want it’s required in production, you’ll need to create a task that takes the files from the folder and puts them in the dist folder. You also have to add the function to
+      the following line of code at the bottom of the gulpfile:</p>
+    <pre><code class="has-line-data" data-line-start="43" data-line-end="45" class="language-js">exports.default = gulp.series(clean, html, css, images, ...);</code></pre>
+    <h3 class="code-line" data-line-start=46 data-line-end=47><a id="packagejson_46"></a>package.json</h3>
+    <p class="has-line-data" data-line-start="48" data-line-end="49">See [gulp](NEED TO LINk) to learn a about this - but you can more or less disregard this file, since you don’t really need to do anything with it. It’s just used to manage
+      your dependencies (which is done automatically).</p>
+    <h3 class="code-line" data-line-start=50 data-line-end=51><a id="webpackconfigjs_50"></a>webpack.config.js</h3>
+    <p class="has-line-data" data-line-start="52" data-line-end="53">Webpack is a JavaScript module bundler. It’s main purpose is to take all of your JavaScript modules and bundle them into a single file for usage in a web browser. This
+      config file is used in the gulpfile, and simply states the entry point for the application (<code>./src/js/main.js</code>). You shouldn’t have to do anything with this file.</p>
+    <h2 class="code-line" data-line-start=54 data-line-end=55><a id="Utilisation_54"></a>Utilisation</h2>
+    <h3 class="code-line" data-line-start=56 data-line-end=57><a id="Plugins_56"></a>Plugins</h3>
+    <p class="has-line-data" data-line-start="58" data-line-end="59">There are numerous plugins used to transform the source files:</p>
+    <ul>
+      <li class="has-line-data" data-line-start="60" data-line-end="61"><a href="https://www.npmjs.com/package/gulp-file-include">gulp-file-include</a>: including files - used for including common html features, like navigation bars and
+        footers, across all the pages. More on this below.</li>
+      <li class="has-line-data" data-line-start="61" data-line-end="62"><a href="https://www.npmjs.com/package/gulp-autoprefixer">gulp-autoprefixer</a>: parses the CSS file and adds vendor prefixes (i.e. <code>-webkit-</code>,
+        <code>-moz-</code>, <code>-ms-</code>).</li>
+      <li class="has-line-data" data-line-start="62" data-line-end="63"><a href="https://www.npmjs.com/package/gulp-clean-css">gulp-clean-css</a>: minifies css.</li>
+      <li class="has-line-data" data-line-start="63" data-line-end="64"><a href="https://www.npmjs.com/package/del">del</a>: deletes files and directories - used for deleting <code>dist</code> directory after <code>gulp default</code> is
+        entered.</li>
+      <li class="has-line-data" data-line-start="64" data-line-end="65"><a href="https://www.npmjs.com/package/gulp-rename">gulp-rename</a>: rename files - used for renaming <code>main.css</code> to <code>main.min.css</code>, once minified.
+      </li>
+      <li class="has-line-data" data-line-start="65" data-line-end="66"><a href="https://www.npmjs.com/package/gulp-babel">gulp-babel</a>: converts ES6 + ES7 code into a backwards compatible version of JavaScript used in current and older
+        browsers (mainly Internet Explorer). To leanr more about this, see <a href="https://babeljs.io/docs/en/">Babel</a>.</li>
+      <li class="has-line-data" data-line-start="66" data-line-end="67"><a href="https://www.npmjs.com/package/webpack">webpack</a>: bunldes JavaScript modules into a single file for usage in web browers. More on this below.</li>
+      <li class="has-line-data" data-line-start="67" data-line-end="69"><a href="https://www.npmjs.com/package/webpack-stream">webpack-stream</a>: allows webpack to be used in gulp.</li>
+    </ul>
+    <h3 class="code-line" data-line-start=69 data-line-end=70><a id="File_Include_69"></a>File Include</h3>
+    <p class="has-line-data" data-line-start="71" data-line-end="72">Since the site doesn’t use a framework like React or Laravel, it can be time consuming to maintain or update parts of the site since the pages share a lot of common
+      features. For example, if you want to update a link in the navigation bar, you would have to go into each page and update it, since the navigation bar is present on each page. This is where <a
+        href="https://www.npmjs.com/package/gulp-file-include">gulp-file-include</a> has been very useful.</p>
+    <p class="has-line-data" data-line-start="73" data-line-end="74">The partial bits of html are in <code>src/partials</code>, and are any features that are used across multiple pages. Note that this folder is not included in
+      <code>gulpfile.js</code> as it doesn’t need to be available in the production version of the site - <code>gulp-file-include</code> has taken the source files and included the partial html files.</p>
+    <p class="has-line-data" data-line-start="75" data-line-end="76">The following code shows how the partial html file is included in the source html file:</p>
+    <pre><code class="has-line-data" data-line-start="77" data-line-end="79" class="language-html">@@include('./partials/_footer.html')</code></pre>
+    <p class="has-line-data" data-line-start="80" data-line-end="81">You can also pass variables to partial html files. This is useful for <code>_head.html</code>, which has a dynamic page title.</p>
+    <pre><code class="has-line-data" data-line-start="82" data-line-end="88" class="language-html"><span class="hljs-comment">&lt;!-- ./partials/_head.html --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>@@title<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+
+    <span class="hljs-comment">&lt;!-- ./about.html --&gt;</span>
+    @@include('./partials/_head.html', {"title": "About • INFLOWSEM"})</code></pre>
+    <p class="has-line-data" data-line-start="89" data-line-end="90">This is better explained in the official docs, see <a href="https://www.npmjs.com/package/gulp-file-include">gulp-file-include</a>.</p>
+    <h4 class="code-line" data-line-start=91 data-line-end=92><a id="JavaScript_Modules_91"></a>JavaScript Modules</h4>
+    <p class="has-line-data" data-line-start="93" data-line-end="94">You will notice that the JS files in <code>src/js</code> are separated into modules, with most of the modules being imported into <code>main.js</code>. This, hopefully,
+      makes the site easier to maintain as the JS for specific features is contained in it’s own file, making it quicker to access and easier to work on.</p>
+    <p class="has-line-data" data-line-start="95" data-line-end="96">This is achieved through bundling <code>main.js</code> using <a href="https://webpack.js.org/">webpack</a>.</p>
+    <p class="has-line-data" data-line-start="97" data-line-end="98">Note that if you go to <code>dist/js</code>, the modules are not there. This is because they have been bundled together in <code>main.js</code>.</p>
+    <p class="has-line-data" data-line-start="99" data-line-end="100">In addition to importing your own modules, you can import other code libraries which can provide extra functionality. E.g. in <code>js/modules/bookingCalendar.js</code>,
+      moment, a popular library for parsing and formatting dates, has been imported.</p>
+    <p class="has-line-data" data-line-start="101" data-line-end="102">Libraries can be installed using <a href="https://www.npmjs.com/package/moment">npm</a>. Simply find the library you would like to install, and enter the install
+      command, e.g. <code>npm i moment</code>. These are installed into the node_modules folder. To reference them in your own code, you just need to include the name and not the file path:</p>
+    <pre><code class="has-line-data" data-line-start="103" data-line-end="105" class="language-js"><span class="hljs-keyword">import</span> moment <span class="hljs-keyword">from</span> <span class="hljs-string">'moment'</span>;</code></pre>
+  </div>
+
+</html>

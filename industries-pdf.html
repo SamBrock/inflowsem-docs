@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>INFLOWSEM Database.md</title>
+
+  <link rel="stylesheet" href="./styles/main.css">
+
+  <!-- <link rel="stylesheet" href="./styles/github-markdown.css"> -->
+  <link rel="stylesheet" href="./styles/atom-one-light.css">
+  <script src="./highlight-js/highlight.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+
+</head>
+
+<body id="preview">
+  <div class="sidebar">
+    <div class="docs-logo">INFLOWSEM Docs</div>
+    <ul class="nav">
+      <li class="nav-item"><a href="database.html">Database</a></li>gulp.html
+      <li class="nav-item"><a href="gulp.html">Gulp</a></li>
+      <li class="nav-item"><a href="inflowsem-gulp.html">INFLOWSEM + Gulp</a></li>
+      <li class="nav-item"><a href="creating-pages.html">Creating Pages</a></li>
+      <li class="nav-item"><a href="adding-news-articles.html">Adding News Articles</a></li>
+      <li class="nav-item active"><a href="industries-pdf.html">Industries PDFs</a></li>
+      <li class="nav-item"><a href="google-analytics-widget.html">Google Analytics Widget</a></li>
+      <li class="nav-item"><a href="misc.html">Miscellaneous</a></li>
+    </ul>
+  </div>
+  <div class="content">
+    <h1 class="code-line" data-line-start=0 data-line-end=1><a id="Industries_PDF_files_0"></a>Industries PDF files</h1>
+    <h2 class="code-line" data-line-start=2 data-line-end=3><a id="How_it_works_2"></a>How it works</h2>
+    <p class="has-line-data" data-line-start="3" data-line-end="4">There is a pdf folder, within <code>src</code>, which contains all the individual pdf files.</p>
+    <p class="has-line-data" data-line-start="5" data-line-end="6">Also within <code>src/pdf</code>, there is a file called <code>pdf-viewer.html</code>. This html file displays the pdf as a series of slides, including next and prev
+      buttons. All the css and JavaScript needed to make this work is also included in <code>pdf-viewer.html</code>, instead of the <code>src/js</code> and <code>src/css</code>.</p>
+    <p class="has-line-data" data-line-start="7" data-line-end="8">To view the pdf in one of the industries pages, <code>pdf-view.html</code> is embeded into the page using the <code>&lt;iframe&gt;</code> tag.</p>
+    <pre><code class="has-line-data" data-line-start="9" data-line-end="11" class="language-html"><span class="hljs-tag">&lt;<span class="hljs-title">iframe</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"pdf/pdf-viewer.html?Optimal-sizing-and-life-cycle-cost-modelling-of-pipelines-carrying-solid-liquid-mixtures.pdf"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"pdf-iframe"</span> <span class="hljs-attribute">scrolling</span>=<span class="hljs-value">"no"</span> <span class="hljs-attribute">frameborder</span>=<span class="hljs-value">"0"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">iframe</span>&gt;</span></code></pre>
+    <p class="has-line-data" data-line-start="12" data-line-end="13">As you can see from the above code, the actual pdf file is passed to <code>pdf-viewer.html</code> as a parameter in the query string of the src url. The code within
+      <code>pdf-viewer.html</code> will then use this parameter to display the pdf file.</p>
+    <h2 class="code-line" data-line-start=14 data-line-end=15><a id="Adding_a_new_pdf_14"></a>Adding a new pdf</h2>
+    <p class="has-line-data" data-line-start="15" data-line-end="16">Use the following code when adding a new pdf file to a industries page:</p>
+    <pre><code class="has-line-data" data-line-start="18" data-line-end="34" class="language-html"><span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"contribution-1"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"container text-center"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"col"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"col-heading"</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"col"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">iframe</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"pdf/pdf-viewer.html?&lt;PDF_FILE&gt;.pdf"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"pdf-iframe"</span> <span class="hljs-attribute">scrolling</span>=<span class="hljs-value">"no"</span> <span class="hljs-attribute">frameborder</span>=<span class="hljs-value">"0"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">iframe</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span></code></pre>
+    <p class="has-line-data" data-line-start="34" data-line-end="35">Replace <code>&lt;PDF_FILE&gt;</code> with the name of the pdf you have added to <code>src/pdf</code>. Note that the pdf title can’t have any spaces in it.</p>
+    <p class="has-line-data" data-line-start="36" data-line-end="37">You should change <code>id=&quot;contribution-1&quot;</code> if there is more than one pdf file already on the page (e.g. if there is 3, change the 1 to 4).</p>
+    <p class="has-line-data" data-line-start="38" data-line-end="39">You may want to delete the <code>&lt;p&gt;</code> tags if there is no subheading.</p>
+    <p class="has-line-data" data-line-start="40" data-line-end="41">Once the pdf is added, it’s important that you add a link to it in the industries sidebar. The following code is from <code>valves.html</code>:</p>
+    <pre><code class="has-line-data" data-line-start="42" data-line-end="52" class="language-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"navbar-side-item active"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"navbar-side-link"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"valves.html"</span>&gt;</span>Valves<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"nav bd-sidenav"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"navbar-side-sub-link"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"valves.html#contribution-1"</span>&gt;</span>Severe Service Control Valve Design Using CFD<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"navbar-side-sub-link"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"valves.html#contribution-2"</span>&gt;</span>Valve Flow Trim Optimization<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"navbar-side-sub-link"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"valves.html#contribution-3"</span>&gt;</span>Improved Design of Multistage Valve Trims<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"navbar-side-sub-link"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"valves.html#contribution-4"</span>&gt;</span>Improving Sustainability of the NPD Process Using CFD<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre>
+    <p class="has-line-data" data-line-start="52" data-line-end="53">Here you can see a list of links to the different pdf files on the valves industries page. <code>&lt;a href=&quot;valves.html#contribution-...&quot;&gt;</code> is there so
+      that users can click these links and be taken straight to the file, without having to scroll for it.</p>
+    <p class="has-line-data" data-line-start="54" data-line-end="55">There isn’t a industries page sidebar file - instead, each industries page file has it’s version with links to the pdf files within it.</p>
+  </div>
+
+</html>

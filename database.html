@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>INFLOWSEM Database.md</title>
+
+  <link rel="stylesheet" href="./styles/main.css">
+
+  <!-- <link rel="stylesheet" href="./styles/github-markdown.css"> -->
+  <link rel="stylesheet" href="./styles/atom-one-light.css">
+  <script src="./highlight-js/highlight.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+
+</head>
+
+<body id="preview">
+  <div class="sidebar">
+    <div class="docs-logo">INFLOWSEM Docs</div>
+    <ul class="nav">
+      <li class="nav-item active"><a href="database.html">Database</a></li>
+      <li class="nav-item"><a href="gulp.html">Gulp</a></li>
+      <li class="nav-item"><a href="inflowsem-gulp.html">INFLOWSEM + Gulp</a></li>
+      <li class="nav-item"><a href="creating-pages.html">Creating Pages</a></li>
+      <li class="nav-item"><a href="adding-news-articles.html">Adding News Articles</a></li>
+      <li class="nav-item"><a href="industries-pdf.html">Industries PDFs</a></li>
+      <li class="nav-item"><a href="google-analytics-widget.html">Google Analytics Widget</a></li>
+      <li class="nav-item"><a href="misc.html">Miscellaneous</a></li>
+    </ul>
+  </div>
+  <div class="content">
+    <h1 class="code-line" data-line-start=0 data-line-end=1><a id="Database_0"></a>Database</h1>
+    <p class="has-line-data" data-line-start="2" data-line-end="3">The INFLOWSEM database is hosted on asteria, same as the website.</p>
+    <p class="has-line-data" data-line-start="4" data-line-end="5">To manage the database, read the data and test SQL statements, go to <a href="http://asteria.hud.ac.uk/phpMyAdmin">phpMyAdmin</a>. The INFLOWSEM database (technically just a
+      table within an already established database) can be found in the database named <code>www</code>.</p>
+    <p class="has-line-data" data-line-start="6" data-line-end="7">The table only holds data about the booked consultations. If you need additional tables, you may want to rename the <code>INFLOWSEM</code> table to something
+      like<code>INFLOWSEM_consultation</code>.</p>
+    <h2 class="code-line" data-line-start=8 data-line-end=9><a id="Connecting_to_the_Database_8"></a>Connecting to the Database</h2>
+    <p class="has-line-data" data-line-start="10" data-line-end="11">The site conencts to the database using PDO. The connection to the database can be found in <code>src/database/database.php</code>.</p>
+    <p class="has-line-data" data-line-start="12" data-line-end="13">To execute a SQL statement, you need to get the connection to the database:</p>
+    <pre><code class="has-line-data" data-line-start="15" data-line-end="17" class="language-php"><span class="hljs-variable">$conn</span> = getConnection();</code></pre>
+    <p class="has-line-data" data-line-start="17" data-line-end="18">You should also close the connection once executed:</p>
+    <pre><code class="has-line-data" data-line-start="20" data-line-end="22" class="language-php">closeConnection(<span class="hljs-variable">$conn</span>);</code></pre>
+    <h2 class="code-line" data-line-start=23 data-line-end=24><a id="Querying_the_database_23"></a>Querying the database</h2>
+    <p class="has-line-data" data-line-start="25" data-line-end="26">There’s currently 2 functions in <code>src/database/database.php</code> which query the database:</p>
+    <ul>
+      <li class="has-line-data" data-line-start="26" data-line-end="27"><code>getConsultationDates()</code> returns an array of consultation dates.</li>
+      <li class="has-line-data" data-line-start="27" data-line-end="29"><code>addConsultationDate($email, $date)</code> inserts the email and consultation date and time into the database.</li>
+    </ul>
+    <p class="has-line-data" data-line-start="29" data-line-end="30">These functions are accessed differently throughout the site.</p>
+    <ul>
+      <li class="has-line-data" data-line-start="30" data-line-end="31"><code>getConsultationDates()</code> has an aditional file (<code>src/database/get-consultation-dates.php</code>) which runs the function and returns the dates array,
+        encoded as JSON. This can gotten from an AJAX request and returned to the JS file for disabling dates / times in the consultation booking calendar.</li>
+      <li class="has-line-data" data-line-start="31" data-line-end="33"><code>addConsultationDate($email, $date)</code> is ran in <code>src/process-form.php</code> after the consultation form is processed.</li>
+    </ul>
+    <p class="has-line-data" data-line-start="33" data-line-end="34">Each of these functions are not ran directly in <code>database.php</code>. Instead, they are the database file, with it’s database connection and functions, are ‘required’
+      using the <code>require_once</code> statement in PHP. This allows you to use the functions anywhere within a PHP file, and more than once.</p>
+</body>
+</div>
+
+</html>

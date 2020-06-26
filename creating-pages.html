@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>INFLOWSEM Database.md</title>
+
+  <link rel="stylesheet" href="./styles/main.css">
+
+  <!-- <link rel="stylesheet" href="./styles/github-markdown.css"> -->
+  <link rel="stylesheet" href="./styles/atom-one-light.css">
+  <script src="./highlight-js/highlight.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+
+</head>
+
+<body id="preview">
+  <div class="sidebar">
+    <div class="docs-logo">INFLOWSEM Docs</div>
+    <ul class="nav">
+      <li class="nav-item"><a href="database.html">Database</a></li>
+      <li class="nav-item"><a href="gulp.html">Gulp</a></li>
+      <li class="nav-item"><a href="inflowsem-gulp.html">INFLOWSEM + Gulp</a></li>
+      <li class="nav-item active"><a href="creating-pages.html">Creating Pages</a></li>
+      <li class="nav-item"><a href="adding-news-articles.html">Adding News Articles</a></li>
+      <li class="nav-item"><a href="industries-pdf.html">Industries PDFs</a></li>
+      <li class="nav-item"><a href="google-analytics-widget.html">Google Analytics Widget</a></li>
+      <li class="nav-item"><a href="misc.html">Miscellaneous</a></li>
+    </ul>
+  </div>
+  <div class="content">
+    <h1 class="code-line" data-line-start=0 data-line-end=1><a id="Creating_pages_0"></a>Creating pages</h1>
+    <h2 class="code-line" data-line-start=2 data-line-end=3><a id="File_includes_2"></a>File includes</h2>
+    <p class="has-line-data" data-line-start="4" data-line-end="5">Certain aspects and features of the page have already been created and are ready to be included.</p>
+    <p class="has-line-data" data-line-start="6" data-line-end="7">Here’s the list of partial html files that you should include:</p>
+    <ul>
+      <li class="has-line-data" data-line-start="7" data-line-end="8"><code>_head.html</code>: the <code>&lt;head&gt;</code> of the document.</li>
+      <li class="has-line-data" data-line-start="8" data-line-end="9"><code>_nav.html</code>: the navigation bar for the site.</li>
+      <li class="has-line-data" data-line-start="9" data-line-end="10"><code>_join-modal.html</code>: the ‘Join INFLOWSEM’ modal which pops up after 40 seconds - should ideally be on every page.</li>
+      <li class="has-line-data" data-line-start="10" data-line-end="11"><code>_cookie-alert.html</code>: alerts users to the use of cookies on the site.</li>
+      <li class="has-line-data" data-line-start="11" data-line-end="12"><code>_vendors.html</code>: adds the various vendors required for the site. Also includes a link to <code>main.js</code>.</li>
+      <li class="has-line-data" data-line-start="12" data-line-end="14"><code>_footer.html</code>: site footer.</li>
+    </ul>
+    <p class="has-line-data" data-line-start="14" data-line-end="15">When including <code>_head.html</code>, make sure to pass the pass the title as an additional parameter. See below:</p>
+    <pre><code class="has-line-data" data-line-start="16" data-line-end="18" class="language-html">  @@include('./partials/_head.html', {"title": "NEW_PAGE_TITLE})
+</code></pre>
+    <h2 class="code-line" data-line-start=19 data-line-end=20><a id="Navigation_bar_19"></a>Navigation bar</h2>
+    <p class="has-line-data" data-line-start="21" data-line-end="22">It’s important to remember that when you create a new page, you’ll have to create a link to it in the navigation bar.</p>
+    <p class="has-line-data" data-line-start="23" data-line-end="24">Go to <code>partials/_nav.html</code>, and add the link.</p>
+    <h2 class="code-line" data-line-start=25 data-line-end=26><a id="Footer_25"></a>Footer</h2>
+    <p class="has-line-data" data-line-start="27" data-line-end="28">Do the same for the footer. Go to <code>partials/_footer.html</code> and add a link to the page.</p>
+    <h2 class="code-line" data-line-start=29 data-line-end=30><a id="Sidebars_29"></a>Sidebars</h2>
+    <p class="has-line-data" data-line-start="31" data-line-end="32">Some pages have their own navigation sidebars (industries and communities pages). If this is the case, e.g. you are adding a new industries page, then you need to add the
+      sidebar to the page and add a link to it on all the other industries pages.</p>
+    <p class="has-line-data" data-line-start="33" data-line-end="34">Append the below code to the existing sidebars in the industries pages:</p>
+    <pre><code class="has-line-data" data-line-start="35" data-line-end="39" class="language-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"navbar-side-item"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"navbar-side-link"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"NEW_PAGE_LINK.html"</span>&gt;</span>NEW_PAGE_NAME<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre>
+    <p class="has-line-data" data-line-start="40" data-line-end="41">Then, copy the entire sidebar from one of the pages to the new page.</p>
+  </div>
+
+</html>

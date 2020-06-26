@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  color: #001c3b;
+  display: grid;
+  grid-template-columns: 220px 1000px;
+  height: 100vh;
+  font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+}
+
+a {
+  color: #00264e;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color .3s ease;
+}
+
+a:hover{
+  color: #004c9d;
+}
+
+code {
+  background-color: #f3f8ff;
+  color: #001c3b;
+  line-height: 1.9;
+  text-align: left;
+  padding: 0 .25em;
+  border-radius: 4px;
+  font-weight: 500;
+  border: 1px solid #e0ecff;
+  padding: 1px 2px;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: .9em
+}
+
+pre {
+  background-color: #f3f8ff;
+  overflow: auto;
+  padding: .5em .8em;
+  border: 1px solid #e0ecff;
+}
+
+pre > code{
+  border: none;
+}
+
+.docs-logo {
+  font-weight: 700;
+  letter-spacing: -.3px;
+  font-size: 1.5em;
+}
+
+.content {
+  grid-column: 2;
+  margin: 24px 48px;
+}
+
+.sidebar {
+  grid-column: 1;
+  background: #f3f8ff;
+  border-right: #e0ecff 1px solid;
+  padding: 24px 12px;
+  position: -webkit-sticky; /* Safari */
+  position: fixed;
+  height: 100vh;
+  top: 0;
+  width: 200px;
+}
+
+.sidebar .nav {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar .nav .nav-item {
+  display: block;
+  padding: .55em 0;
+  display: block;
+  font-size: 1em;
+  font-weight: 500;
+  color: #090910;
+  text-decoration: none;
+  margin-bottom: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.sidebar .nav .nav-item a {
+  text-decoration: none;
+  color: #00264e;
+  font-weight: 600;
+}
+
+.sidebar .nav .nav-item a:hover {
+  color: #004c9d;
+}

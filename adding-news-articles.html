@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>INFLOWSEM Database.md</title>
+
+  <link rel="stylesheet" href="./styles/main.css">
+
+  <!-- <link rel="stylesheet" href="./styles/github-markdown.css"> -->
+  <link rel="stylesheet" href="./styles/atom-one-light.css">
+  <script src="./highlight-js/highlight.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+
+</head>
+
+<body id="preview">
+  <div class="sidebar">
+    <div class="docs-logo">INFLOWSEM Docs</div>
+    <ul class="nav">
+      <li class="nav-item"><a href="database.html">Database</a></li>
+      <li class="nav-item"><a href="gulp.html">Gulp</a></li>
+      <li class="nav-item"><a href="inflowsem-gulp.html">INFLOWSEM + Gulp</a></li>
+      <li class="nav-item"><a href="creating-pages.html">Creating Pages</a></li>
+      <li class="nav-item active"><a href="adding-news-articles.html">Adding News Articles</a></li>
+      <li class="nav-item"><a href="industries-pdf.html">Industries PDFs</a></li>
+      <li class="nav-item"><a href="google-analytics-widget.html">Google Analytics Widget</a></li>
+      <li class="nav-item"><a href="misc.html">Miscellaneous</a></li>
+    </ul>
+  </div>
+  <div class="content">
+    <h1 class="code-line" data-line-start=0 data-line-end=1><a id="Adding_news_articles_0"></a>Adding news articles</h1>
+    <p class="has-line-data" data-line-start="2" data-line-end="3">Take the following code and paste it above the latest news article in <code>src/news.html</code>.</p>
+    <pre><code class="has-line-data" data-line-start="5" data-line-end="27" class="language-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"news-article"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"container"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"row"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"article-body col-md-8"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"col-heading"</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"article-sidebar col-md-4"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"news-article-img"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"..."</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">picture</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">source</span> <span class="hljs-attribute">srcset</span>=<span class="hljs-value">"..."</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"image/webp"</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">source</span> <span class="hljs-attribute">srcset</span>=<span class="hljs-value">"..."</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"image/png"</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"img-fluid news-article-img"</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"..."</span> <span class="hljs-attribute">alt</span>=<span class="hljs-value">"..."</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">picture</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre>
+    <p class="has-line-data" data-line-start="28" data-line-end="29">Note that <code>col-heading</code> is for the article heading and the <code>&lt;p&gt;</code> tags are for the article body.</p>
+    <p class="has-line-data" data-line-start="30" data-line-end="31">There’s also a <code>article-sidebar</code> which should be used to display the images in the article.</p>
+    <p class="has-line-data" data-line-start="32" data-line-end="33">The <code>news-article-img</code> class in the anchor tag allows the image to be displayed in a lightbox, once clicked. This is initialised in <code>js/main.js</code> with
+      the SimpleLightbox plugin. Wrapping an image in this tag, with the <code>news-article-image</code> class, will achieve this.</p>
+    <p class="has-line-data" data-line-start="34" data-line-end="35">Note the use of the <code>&lt;picture&gt;</code> tags. This allows for different file types. Chrome will default to the webp filetype (smaller than png or jpeg), improving
+      performance. For more on this, see <a href="https://www.w3schools.com/tags/tag_picture.asp">HTML picture tag</a>.</p>
+</body>
+</div>
+
+</html>

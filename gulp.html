@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Gulp - INFLOWSEM Docs</title>
+
+  <link rel="stylesheet" href="./styles/main.css">
+
+  <!-- <link rel="stylesheet" href="./styles/github-markdown.css"> -->
+  <link rel="stylesheet" href="./styles/atom-one-light.css">
+  <script src="./highlight-js/highlight.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+
+</head>
+
+<body id="preview">
+  <div class="sidebar">
+    <div class="docs-logo">INFLOWSEM Docs</div>
+    <ul class="nav">
+      <li class="nav-item"><a href="database.html">Database</a></li>
+      <li class="nav-item active"><a href="gulp.html">Gulp</a></li>
+      <li class="nav-item"><a href="inflowsem-gulp.html">INFLOWSEM + Gulp</a></li>
+      <li class="nav-item"><a href="creating-pages.html">Creating Pages</a></li>
+      <li class="nav-item"><a href="adding-news-articles.html">Adding News Articles</a></li>
+      <li class="nav-item"><a href="industries-pdf.html">Industries PDFs</a></li>
+      <li class="nav-item"><a href="google-analytics-widget.html">Google Analytics Widget</a></li>
+      <li class="nav-item"><a href="misc.html">Miscellaneous</a></li>
+    </ul>
+  </div>
+  <div class="content">
+    <h1 class="code-line" data-line-start=0 data-line-end=1><a id="gulpjs_0"></a>Gulp</h1>
+    <p class="has-line-data" data-line-start="1" data-line-end="2">Modern web development has many repetitive tasks like running a local server, minifying code, optimizing images, preprocessing CSS and more. Build tools like Gulp help
+      automate these tasks.</p>
+    <p class="has-line-data" data-line-start="3" data-line-end="4"><a href="https://gulpjs.com/">Gulp</a> is a streaming task runner that lets developers automate many development tasks. It reads files as streams and pipes the streams to
+      different tasks. These tasks are code-based and use plugins. The tasks modify the files, building sorce files inro production files.</p>
+    <h2 class="code-line" data-line-start=5 data-line-end=6><a id="How_to_set_up_gulp_5"></a>How to set up gulp</h2>
+    <p class="has-line-data" data-line-start="6" data-line-end="7">Setting up gulp for the first time requires a few steps.</p>
+    <h3 class="code-line" data-line-start=8 data-line-end=9><a id="Node_8"></a>Node</h3>
+    <p class="has-line-data" data-line-start="9" data-line-end="10">Gulp requires <a href="https://nodejs.org/en/">Node</a>, and its packet manager, <a href="https://www.npmjs.com/">npm</a>, which installs the gulp plugins.</p>
+    <p class="has-line-data" data-line-start="11" data-line-end="12">To install Node, click <a href="https://nodejs.org/en/">here</a> to download the latest version - this also installs npm.</p>
+    <h3 class="code-line" data-line-start=13 data-line-end=14><a id="Gulp_command_line_tool_13"></a>Gulp command line tool</h3>
+    <p class="has-line-data" data-line-start="14" data-line-end="15">Gulp’s command line tool should also be installed globally so that gulp can be executed from the command line. Do this by running the following from the command line:</p>
+    <pre><code class="has-line-data" data-line-start="17" data-line-end="19">npm install --global gulp-cli
+</code></pre>
+    <h3 class="code-line" data-line-start=20 data-line-end=21><a id="Creating_a_new_project_20"></a>Creating a new project</h3>
+    <p class="has-line-data" data-line-start="21" data-line-end="22">Before installing gulp plugins, your application needs to be initialised. Do this by running the following command line command from within your project’s woring
+      directory:</p>
+    <pre><code class="has-line-data" data-line-start="23" data-line-end="25">npm init
+</code></pre>
+    <p class="has-line-data" data-line-start="25" data-line-end="26">This command begins the generation of a package.json file, prompting you with questions about your application. You can leave these blank, or skip them entirley by doing
+      <code>npm init -y</code> instead of the above command.</p>
+    <h4 class="code-line" data-line-start=27 data-line-end=28><a id="packagejson_27"></a>package.json</h4>
+    <pre><code class="has-line-data" data-line-start="29" data-line-end="41" class="language-json">{
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"test"</span></span>,
+  "<span class="hljs-attribute">version</span>": <span class="hljs-value"><span class="hljs-string">"1.0.0"</span></span>,
+  "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
+  "<span class="hljs-attribute">main</span>": <span class="hljs-value"><span class="hljs-string">"main.js"</span></span>,
+  "<span class="hljs-attribute">scripts</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">test</span>": <span class="hljs-value"><span class="hljs-string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>
+  </span>}</span>,
+  "<span class="hljs-attribute">author</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
+  "<span class="hljs-attribute">license</span>": <span class="hljs-value"><span class="hljs-string">"ISC"</span>
+</span>}
+</code></pre>
+    <p class="has-line-data" data-line-start="41" data-line-end="42">Don’t worry if you don’t understand what all of these values represent, they are not critical to learning gulp.</p>
+    <p class="has-line-data" data-line-start="43" data-line-end="44">The important thing to know is that this file is used to track your project’s packages. Tracking packages like this allows for quick reinstallation of all the packages and
+      their dependencies in future builds. The <code>npm install</code> command will read package.json and automatically install everything listed.</p>
+    <h3 class="code-line" data-line-start=45 data-line-end=46><a id="Installing_packages_45"></a>Installing packages</h3>
+    <p class="has-line-data" data-line-start="46" data-line-end="47">Gulp and Node rely on plugins (packages) for the majority of their functionality. Node plugins can be installed with the following command line command:</p>
+    <pre><code class="has-line-data" data-line-start="48" data-line-end="50">npm install pluginName
+</code></pre>
+    <p class="has-line-data" data-line-start="50" data-line-end="51">This command uses the npm tool to install the <code>pluginName</code> plugin. Plugins and their dependencies are installed in a node_modules folder inside the project’s
+      working directory.</p>
+    <p class="has-line-data" data-line-start="52" data-line-end="53">The first plugin that you want to install is gulp itself. Do this by running the following command in the command line from within your project’s working directory:</p>
+    <pre><code class="has-line-data" data-line-start="54" data-line-end="56">npm install gulp
+</code></pre>
+    <p class="has-line-data" data-line-start="56" data-line-end="57">Gulp and its dependencies are then present in the the node_modules directory (inside the project directory). The package.json file is also updated to the following:</p>
+    <pre><code class="has-line-data" data-line-start="58" data-line-end="73" class="language-json">{
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"test"</span></span>,
+  "<span class="hljs-attribute">version</span>": <span class="hljs-value"><span class="hljs-string">"1.0.0"</span></span>,
+  "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
+  "<span class="hljs-attribute">main</span>": <span class="hljs-value"><span class="hljs-string">"index.js"</span></span>,
+  "<span class="hljs-attribute">scripts</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">test</span>": <span class="hljs-value"><span class="hljs-string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>
+  </span>}</span>,
+  "<span class="hljs-attribute">author</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
+  "<span class="hljs-attribute">license</span>": <span class="hljs-value"><span class="hljs-string">"ISC"</span></span>,
+  "<span class="hljs-attribute">devDependencies</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">gulp</span>": <span class="hljs-value"><span class="hljs-string">"^3.9.1"</span>
+  </span>}
+</span>}
+</code></pre>
+    <p class="has-line-data" data-line-start="73" data-line-end="74">Note that there is now a <code>devDependencies</code> field with gulp and its current version listed.</p>
+    <h3 class="code-line" data-line-start=75 data-line-end=76><a id="Gulpfile_75"></a>Gulpfile</h3>
+    <p class="has-line-data" data-line-start="76" data-line-end="77">Once packages are installed (in node_modules), you are ready to use them. All gulp code is writtein in a gulpfile.js file. To use a package, start by including it in
+      gulpfile.js. The following code in your gulpfile includes the gulp package that was installed in the previous section:</p>
+    <pre><code class="has-line-data" data-line-start="78" data-line-end="80" class="language-js"><span class="hljs-keyword">const</span> gulp = <span class="hljs-built_in">require</span>(<span class="hljs-string">'gulp'</span>);
+</code></pre>
+    <p class="has-line-data" data-line-start="80" data-line-end="81">You may not have come accross <code>require</code> before. The basic functionality of <code>require</code> is that it reads a JavaScript file, executes the file, and then
+      proceeds to return the <code>exports</code> object. In the above case, it finds the the folder called gulp within node_modules, executes it and returns whatever is exported within <code>gulp/index.js</code>.</p>
+    <p class="has-line-data" data-line-start="82" data-line-end="83">The rules of where <code>require</code> finds the files can be a little complex, but a simple rule of thumb is that if the file doesn’t start with “./” or “/”, then it is
+      considered a dependency in the local node_modules folder. If the file starts with “./” it is considered a relative file to the file that called <code>require</code>. If the file starts with “/”, it is considered an absolute path.
+      NOTE: you can omit “.js” and <code>require</code> will automatically append it if needed. For more detailed information, see <a href="https://nodejs.org/en/knowledge/getting-started/what-is-require/">What is require?</a>.</p>
+    <h2 class="code-line" data-line-start=84 data-line-end=85><a id="Creating_tasks_84"></a>Creating tasks</h2>
+    <p class="has-line-data" data-line-start="85" data-line-end="86">Gulp tasks are defined in the gulpfile.js file using functions which returns a stream. Streams in gulp provide us with a way to convert files into an object that can flow
+      through the pipeline without having to be written to disk after each step. A simple tasks looks like this (taken from the gulpfile for INFLOWSEM):</p>
+    <pre><code class="has-line-data" data-line-start="88" data-line-end="94" class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">videos</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> gulp
+    .src(<span class="hljs-string">'./src/videos/**/*'</span>)
+    .pipe(gulp.dest(<span class="hljs-string">'./dist/videos'</span>))
+}
+</code></pre>
+    <p class="has-line-data" data-line-start="94" data-line-end="95">This code defines a task which moves the videos from the <code>src</code> folder to the <code>dist</code> folder (“dist” is short for distributable, a file which can be
+      used by others without the need to compile - also used in production).</p>
+    <p class="has-line-data" data-line-start="96" data-line-end="97">A complete gulpfile might look like this:</p>
+    <h4 class="code-line" data-line-start=97 data-line-end=98><a id="gulpfilejs_97"></a>gulpfile.js</h4>
+    <pre><code class="has-line-data" data-line-start="99" data-line-end="133" class="language-js"><span class="hljs-comment">// Load plugins</span>
+<span class="hljs-keyword">const</span> gulp = <span class="hljs-built_in">require</span>(<span class="hljs-string">"gulp"</span>);
+<span class="hljs-keyword">const</span> fileinclude = <span class="hljs-built_in">require</span>(<span class="hljs-string">"gulp-file-include"</span>);
+<span class="hljs-keyword">const</span> autoprefixer = <span class="hljs-built_in">require</span>(<span class="hljs-string">"gulp-autoprefixer"</span>);
+<span class="hljs-keyword">const</span> rename = <span class="hljs-built_in">require</span>(<span class="hljs-string">"gulp-rename"</span>);
+<span class="hljs-keyword">const</span> cleanCSS = <span class="hljs-built_in">require</span>(<span class="hljs-string">"gulp-clean-css"</span>);
+
+<span class="hljs-comment">// HTML task</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">html</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> gulp
+    .src(<span class="hljs-string">'./src/*.{html,php}'</span>)
+    .pipe(fileinclude({
+      prefix: <span class="hljs-string">'@@'</span>,
+      basepath: <span class="hljs-string">'@file'</span>
+    }))
+    .pipe(gulp.dest(<span class="hljs-string">'./dist'</span>));
+}
+
+<span class="hljs-comment">// CSS task</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">css</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> gulp
+    .src(<span class="hljs-string">"./src/css/*.css"</span>)
+    .pipe(autoprefixer({
+      cascade: <span class="hljs-literal">false</span>
+    }))
+    .pipe(rename({
+      suffix: <span class="hljs-string">".min"</span>
+    }))
+    .pipe(cleanCSS())
+    .pipe(gulp.dest(<span class="hljs-string">"./dist/css"</span>));
+}
+
+exports.default = gulp.series(html, css);
+</code></pre>
+    <p class="has-line-data" data-line-start="133" data-line-end="134">Where each installed plugin is included with require() and tasks are then defined using functions from the installed plugins. Note that functionality from multiple
+      plugins can exist in a single task.</p>
+    <p class="has-line-data" data-line-start="135" data-line-end="136">Tasks should be exported so that they are publicly available to run in a command prompt. The above tasks are exported as a series using the <code>gulp.series</code>
+      function. When this is run, it will run each of these tasks one by one.</p>
+    <p class="has-line-data" data-line-start="137" data-line-end="138">The following command will run the exported gulp tasks:</p>
+    <pre><code class="has-line-data" data-line-start="139" data-line-end="141">gulp default
+</code></pre>
+  </div>
+
+</html>
