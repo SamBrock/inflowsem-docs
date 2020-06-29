@@ -61,10 +61,10 @@
     <p class="has-line-data" data-line-start="33" data-line-end="34">You will notice that a lot of the tasks simply move one folder from <code>src</code> to <code>dist</code>, like the following code which moves all the files in
       <code>./src/videos</code> to <code>./dist/videos</code>:</p>
     <pre><code class="has-line-data" data-line-start="35" data-line-end="41" class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">videos</span>(<span class="hljs-params"></span>) </span>{
-      <span class="hljs-keyword">return</span> gulp
-        .src(<span class="hljs-string">'./src/videos/**/*'</span>)
-        .pipe(gulp.dest(<span class="hljs-string">'./dist/videos'</span>))
-    }</code></pre>
+    <span class="hljs-keyword">return</span> gulp
+      .src(<span class="hljs-string">'./src/videos/**/*'</span>)
+      .pipe(gulp.dest(<span class="hljs-string">'./dist/videos'</span>))
+}</code></pre>
     <p class="has-line-data" data-line-start="41" data-line-end="42">This is a minor problem with this approach; it could be solved by using an assets folder to store all the videos, pdfs, images, tools etc. The important thing to note is
       that if you create a new folder within the src folder, and you want it’s required in production, you’ll need to create a task that takes the files from the folder and puts them in the dist folder. You also have to add the function to
       the following line of code at the bottom of the gulpfile:</p>
@@ -103,10 +103,10 @@
     <pre><code class="has-line-data" data-line-start="77" data-line-end="79" class="language-html">@@include('./partials/_footer.html')</code></pre>
     <p class="has-line-data" data-line-start="80" data-line-end="81">You can also pass variables to partial html files. This is useful for <code>_head.html</code>, which has a dynamic page title.</p>
     <pre><code class="has-line-data" data-line-start="82" data-line-end="88" class="language-html"><span class="hljs-comment">&lt;!-- ./partials/_head.html --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>@@title<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>@@title<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
 
-    <span class="hljs-comment">&lt;!-- ./about.html --&gt;</span>
-    @@include('./partials/_head.html', {"title": "About • INFLOWSEM"})</code></pre>
+<span class="hljs-comment">&lt;!-- ./about.html --&gt;</span>
+@@include('./partials/_head.html', {"title": "About • INFLOWSEM"})</code></pre>
     <p class="has-line-data" data-line-start="89" data-line-end="90">This is better explained in the official docs, see <a href="https://www.npmjs.com/package/gulp-file-include">gulp-file-include</a>.</p>
     <h4 class="code-line" data-line-start=91 data-line-end=92><a id="JavaScript_Modules_91"></a>JavaScript Modules</h4>
     <p class="has-line-data" data-line-start="93" data-line-end="94">You will notice that the JS files in <code>src/js</code> are separated into modules, with most of the modules being imported into <code>main.js</code>. This, hopefully,
